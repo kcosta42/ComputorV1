@@ -1,0 +1,90 @@
+Solve Polynomial Equation of degree <= 2
+
+Display:
+  Reduce Form
+  Equation Degree
+  All solutions (With discriminant sign when it matter)
+
+Input always well formatted
+
+If Equation not solvable:
+  Detect it
+  Print little message
+  Exit
+
+Coefficient nul, negative, fraction
+
+Special case such as:
+42 * X^0 = 42 * X^0
+(all real number are solution)
+
+Complexe Solution when degree 2
+
+1st Degree:
+a * x + b
+
+if a == 0:
+  if b == 0:
+    All number are Solution
+  else:
+    No Solution
+x = b / a
+
+2nd Degree:
+a * x ^ 2 + b * x + c
+
+if a == 0:
+  then Polynomial is 1st Degree and 1st Degree Resolution method is applied
+
+Discriminant = b ^ 2 - 4 * a * c
+if Discriminant > 0, solutions are:
+  ( -1 * b + sqrt(Discriminant) ) / ( 2 * a )
+  ( -1 * b - sqrt(Discriminant) ) / ( 2 * a )
+if Discriminant == 0, solution is:
+  -1 * ( b / ( 2 * a ) )
+if Discriminant < 0, solution are:
+  ( -1 * b ) / ( 2 * a ) + i * ( sqrt( -1 * Discriminant ) / ( 2 * a ) )
+  ( -1 * b ) / ( 2 * a ) - i * ( sqrt( -1 * Discriminant ) / ( 2 * a ) )
+
+Class Unknown:
+  coef: number
+  degree: number
+  sign: boolean ?
+  operation -
+  operation +
+
+class Polynomial:
+  Unknown a
+  Unknown b
+  Unknown c
+
+Parse Equation with Lexer/Parser
+
+Separe Left Side from Right Side
+
+Remove every element from the right to the left
+so that the right side is equal to 0
+
+Check maximum degree:
+  if >= 3: raise Exception
+
+Calculate discriminant
+
+Calculate result
+
+Math function to implement:
+  sqrt
+
+Bonus:
+  Lexer Parser
+  Natural input output
+  Display irreductible fraction
+  Show intermediate step
+  Visu avec matplotlib:
+    x = arange(-10.0, 10.0, 0.1)
+    s1 = a * x ** 2 + b * x + c
+    plot(x, s1)
+    axhline(linewidth=4, color='r')
+    title('Polynomial / Linear')
+    grid(True)
+    show()
