@@ -1,7 +1,7 @@
 # *************************************************************************** #
 #                                                                             #
 #                                                        :::      ::::::::    #
-#    __init__.py                                       :+:      :+:    :+:    #
+#    parser.py                                         :+:      :+:    :+:    #
 #                                                    +:+ +:+         +:+      #
 #    By: kcosta <kcosta@student.42.fr>             +#+  +:+       +#+         #
 #                                                +#+#+#+#+#+   +#+            #
@@ -10,8 +10,32 @@
 #                                                                             #
 # *************************************************************************** #
 
-import tests.test_core as core
+from computor.parser.lexer import Lexer
+from computor.parser.token import Token, TOKEN_TYPE
 
 
-print("--------------------- POLYNOMIAL TEST ---------------------")
-core.test_polynomial()
+class Parser:
+  """Parser
+
+  Parameters
+  ----------
+  buffer: string
+    Buffer to read
+
+  Attributes
+  ----------
+  _lexer  : object
+    Lexer object for parsing the buffer
+  _token  : object
+    Current token read
+
+  Exceptions
+  ----------
+  KeyError if unknown symbol met in buffer
+  """
+  def __init__(self, buffer):
+    self._lexer = Lexer(buffer)
+
+  def parse(self):
+    self._token = self._lexer.lexer()
+    print(self._token)

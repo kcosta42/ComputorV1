@@ -28,6 +28,8 @@ if a == 0:
     All number are Solution
   else:
     No Solution
+if b == 0:
+  All number are Solution
 x = b / a
 
 2nd Degree:

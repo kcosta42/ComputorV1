@@ -10,26 +10,27 @@
 #                                                                             #
 # *************************************************************************** #
 
-from expert_system.parser.scanner import Scanner
-from expert_system.parser.token import Token, TOKEN_TYPE
+from computor.parser.scanner import Scanner
+from computor.parser.token import Token, TOKEN_TYPE
 
 WHITESPACE_CHARS = "\t\n\v\f\r "
 SYMBOL_CHARS = "+-=^*/."
 NUMBER_CHARS = "0123456789"
 UNKNOWN_CHARS = "Xx"
 
+
 class Lexer:
   """Lexer
 
   Parameters
   ----------
-  filename: string
-    Name of the file to be parse
+  buffer: string
+    Buffer to read
 
   Attributes
   ----------
   _scan: object
-    Scanner object for parsing the file
+    Scanner object for parsing the buffer
   _char: chr
     Next character read
   _token: object
@@ -37,11 +38,10 @@ class Lexer:
 
   Exceptions:
   -----------
-  OSError if could not open filename
-  KeyError if unknown symbol met in file
+  KeyError if unknown symbol met in buffer
   """
-  def __init__(self, filename):
-    self._scan = Scanner(filename)
+  def __init__(self, buffer):
+    self._scan = Scanner(buffer)
     self._char = self._scan.read()
 
   def lexer(self):
@@ -53,7 +53,7 @@ class Lexer:
 
     Exceptions:
     -----------
-    KeyError if unknown symbol met in file
+    KeyError if unknown symbol met in buffer
     """
     if not self._char:
       self._token = Token(TOKEN_TYPE['EOF'])
@@ -73,9 +73,8 @@ class Lexer:
   def raise_KeyError(self):
     """Exception KeyError is raised when callling this function"""
     raise KeyError(
-      "Unknown symbol '{}' at Ln {}, Col {}".format(self._token,
-                                                    self._scan.line,
-                                                    self._scan.column)
+      "Unknown symbol '{}' at index {}".format(self._token,
+                                              self._scan.cursor)
     )
 
   def whitespace_token(self):

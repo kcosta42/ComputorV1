@@ -1,7 +1,19 @@
+# *************************************************************************** #
+#                                                                             #
+#                                                        :::      ::::::::    #
+#    unknown.py                                        :+:      :+:    :+:    #
+#                                                    +:+ +:+         +:+      #
+#    By: kcosta <kcosta@student.42.fr>             +#+  +:+       +#+         #
+#                                                +#+#+#+#+#+   +#+            #
+#    Created: 2018/06/14 18:18:39 by kcosta           #+#    #+#              #
+#    Updated: 2018/06/17 23:15:32 by kcosta          ###   ########.fr        #
+#                                                                             #
+# *************************************************************************** #
+
 
 class Unknown:
   """Unknown variable
-  
+
   Parameters
   ----------
   coef  : number
@@ -13,14 +25,44 @@ class Unknown:
     self.coef = coef
     self.degree = degree
 
+  def __str__(self):
+    return "{}".format(self.coef)
+
+  def __float__(self):
+    return self.coef
+
+  def __neg__(self):
+    return Unknown(float(-self.coef), self.degree)
+
   def __add__(self, other):
-    self.coef += other
-    return self
+    return Unknown(float(self.coef + other), self.degree)
 
   def __sub__(self, other):
-    self.coef -= other
-    return self
+    return Unknown(float(self.coef - other), self.degree)
 
-  # def __mul__(self):
+  def __rsub__(self, other):
+    return Unknown(float(other - self.coef), self.degree)
 
-  # def __div__(self):
+  def __mul__(self, other):
+    return Unknown(float(self.coef * other), self.degree)
+
+  def __rmul__(self, other):
+    return Unknown(float(other * self.coef), self.degree)
+
+  def __truediv__(self, other):
+    return Unknown(float(self.coef / other), self.degree)
+
+  def __rtruediv__(self, other):
+    return Unknown(float(other / self.coef), self.degree)
+
+  def __pow__(self, other):
+    return Unknown(float(self.coef ** other), self.degree)
+
+  def __eq__(self, other):
+    return self.coef == other
+
+  def __lt__(self, other):
+    return self.coef < other
+
+  def __gt__(self, other):
+    return self.coef > other

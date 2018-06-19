@@ -14,57 +14,32 @@
 class Scanner:
   """Scan each character in given file
 
-  Parameters:
-  -----------
-  filename: string
-    name of the file to open
+  Parameters
+  ----------
+  buffer: string
+    Buffer to read
 
-  Attributes:
-  -----------
-  _file   : file
-    file opened
-  _column : number
-    current column in file
-  _line   : number
-    current line in file
-
-  Exceptions:
-  -----------
-  OSError if could not open filename
+  Attributes
+  ----------
+  _cursor: number
+    Cursor in buffer
   """
-  def __init__(self, filename):
-    self.filename = filename
-    self._column = 0
-    self._line = 1
-    self._file = open(self.filename, "r")
-
-  def __del__(self):
-    try:
-      self._file.close()
-    except:
-      pass
+  def __init__(self, buffer):
+    self.buffer = buffer
+    self._cursor = 0
 
   def read(self):
-    """Read one 8bits character in file
+    """Read one character in buffer
 
     Returns
     -------
     char: char
       character read
     """
-    char = self._file.read(1)
-
-    if (char == '\n'):
-      self._line += 1
-      self._column = -1
-
-    self._column += 1
+    char = self.buffer[self._cursor]
+    self._cursor += 1
     return char
 
   @property
-  def column(self):
-    return self._column
-
-  @property
-  def line(self):
-    return self._line
+  def cursor(self):
+    return self._cursor
