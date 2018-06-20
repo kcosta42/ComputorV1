@@ -62,7 +62,52 @@ class Polynomial:
 
 Parse Equation with Lexer/Parser
 while token != '=':
-  if token in '/*
+  if token.type == EOF:
+    raise Exception
+  elif token.type == Unknown:
+    parse_unknown(0)
+  elif token.type == Number:
+    parse_number(Positive)
+  elif token.type == Symbol:
+    if token == '/' or token == '*' or token == '^':
+      raise Exception
+    elif token == '-':
+      token = lexer(True)
+      if token.type != Number:
+        raise Exception
+      parse_number(Negative)
+    elif token == '+':
+      token = lexer(True)
+      if token.type != Number:
+        raise Exception
+      parse_number(Positive)
+  token = lexer(True)
+
+parse_number(sign):
+  coef = float(token)
+  coef = -coef if sign == Negative else coef
+  token = lexer(True)
+
+  if token.type == Unknown:
+    parse_unknown(coef)
+  elif token.type == Symbol:
+    if token == '*':
+      token = lexer(True)
+      if token != Unknown:
+        raise Exception
+      parse_unknown(coef)
+
+parse_unknown(coef):
+  token = lexer(True)
+  if token.type == Symbol:
+    if token == '^':
+      token = lexer(True)
+      if token != Number:
+        raise Exception
+      degree = float(token._value)
+      if not degree.is_integer():
+        raise Exception
+
 
 Separe Left Side from Right Side
 
