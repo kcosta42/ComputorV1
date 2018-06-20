@@ -61,6 +61,8 @@ class Polynomial:
   Unknown c
 
 Parse Equation with Lexer/Parser
+while token != '=':
+  if token in '/*
 
 Separe Left Side from Right Side
 

@@ -35,7 +35,15 @@ class Parser:
   """
   def __init__(self, buffer):
     self._lexer = Lexer(buffer)
-
+    self._token = Token(TOKEN_TYPE['Whitespace'])
+    self._args = []
+  
   def parse(self):
-    self._token = self._lexer.lexer()
-    print(self._token)
+    while self._token.type != TOKEN_TYPE['EOF']:
+      if self._token.type != TOKEN_TYPE['Whitespace']:
+        self.parse_next_unknown()
+      self._token = self._lexer.lexer()
+
+  def parse_next_unknown(self):
+    coef = 0
+    degree = 0
