@@ -106,7 +106,7 @@ class Lexer:
     count = int(has_decimal)
     token = Token(TOKEN_TYPE["Number"])
 
-    while self._char in NUMBER_CHARS or self._char == DECIMAL_CHAR:
+    while self._char and (self._char in NUMBER_CHARS or self._char == DECIMAL_CHAR):
 
       count += int(self._char == DECIMAL_CHAR)
       if count > 1:

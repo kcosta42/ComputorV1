@@ -26,7 +26,14 @@ class Unknown:
     self.degree = degree
 
   def __str__(self):
-    return "{}".format(self.coef)
+    s = "{}".format(self.coef) if self.coef != 0 else ""
+
+    if self.degree == 1:
+      return "{}x".format(s)
+    if self.degree == 2:
+      return "{}x²".format(s)
+
+    return s if s != "" else "0"
 
   def __float__(self):
     return self.coef

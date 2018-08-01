@@ -36,6 +36,9 @@ class Scanner:
     char: char
       character read
     """
+    if (self._cursor >= len(self.buffer)):
+      return False
+
     char = self.buffer[self._cursor]
     self._cursor += 1
     return char
