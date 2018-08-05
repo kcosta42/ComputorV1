@@ -6,7 +6,7 @@
 #    By: kcosta <kcosta@student.42.fr>             +#+  +:+       +#+         #
 #                                                +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/14 18:18:39 by kcosta           #+#    #+#              #
-#    Updated: 2018/06/17 23:15:32 by kcosta          ###   ########.fr        #
+#    Updated: 2018/08/05 13:38:44 by kcosta          ###   ########.fr        #
 #                                                                             #
 # *************************************************************************** #
 
@@ -14,6 +14,7 @@ from computor.math.polynomial import Polynomial
 from computor.math.unknown import Unknown
 
 from computor.parser.parser import Parser
+
 
 def test_polynomial():
   print("\nE = 0")
@@ -57,6 +58,7 @@ def test_polynomial():
   c = Unknown(3, 0)
   poly = Polynomial(a, b, c)
   poly.resolve()
+
 
 def test_parser():
   parser = Parser('X ^ 2 + 3 X + 15 = 0')

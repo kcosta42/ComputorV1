@@ -6,7 +6,7 @@
 #    By: kcosta <kcosta@student.42.fr>             +#+  +:+       +#+         #
 #                                                +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/14 18:18:39 by kcosta           #+#    #+#              #
-#    Updated: 2018/06/17 23:15:32 by kcosta          ###   ########.fr        #
+#    Updated: 2018/08/05 13:34:00 by kcosta          ###   ########.fr        #
 #                                                                             #
 # *************************************************************************** #
 
@@ -85,21 +85,22 @@ class Polynomial:
     discriminant = float(b ** 2 - 4 * a * c)
     if discriminant > 0:
       print("Discriminant is strictly positive, the two solutions are:")
-      print("%.2f" % (( -b + ft_sqrt(discriminant) ) / ( 2 * a )))
+      print("%.2f" % ((-b + ft_sqrt(discriminant)) / (2 * a)))
 
-      print("%.2f" % (( -b - ft_sqrt(discriminant) ) / ( 2 * a )))
+      print("%.2f" % ((-b - ft_sqrt(discriminant)) / (2 * a)))
 
     elif discriminant == 0:
       print("Discriminant is equal to zero, the solution is:")
-      print("%.2f" % (-1 * ( b / ( 2 * a ) )))
+      print("%.2f" % (-1 * (b / (2 * a))))
 
     elif discriminant < 0:
-      print("Discriminant is strictly negative, the two complex solutions are:")
-      print("%.2f + " % (( -b ) / ( 2 * a )), end="")
-      print("i * %.2f" % (( ft_sqrt( -discriminant ) / ( 2 * a ) )))
+      print("Discriminant is strictly negative, "
+            "the two complex solutions are:")
+      print("%.2f + " % ((-b) / (2 * a)), end="")
+      print("i * %.2f" % ((ft_sqrt(-discriminant) / (2 * a))))
 
-      print("%.2f - " % (( -b ) / ( 2 * a )), end="")
-      print("i * %.2f" % (( ft_sqrt( -discriminant ) / ( 2 * a ) )))
+      print("%.2f - " % ((-b) / (2 * a)), end="")
+      print("i * %.2f" % ((ft_sqrt(-discriminant) / (2 * a))))
 
 
 POLYNOMIAL_DEGREE_FORMULA = {

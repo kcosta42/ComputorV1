@@ -6,7 +6,7 @@
 #    By: kcosta <kcosta@student.42.fr>             +#+  +:+       +#+         #
 #                                                +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/14 18:18:39 by kcosta           #+#    #+#              #
-#    Updated: 2018/06/17 23:15:32 by kcosta          ###   ########.fr        #
+#    Updated: 2018/08/05 13:38:21 by kcosta          ###   ########.fr        #
 #                                                                             #
 # *************************************************************************** #
 
@@ -83,7 +83,7 @@ class Lexer:
     """Exception KeyError is raised when callling this function"""
     raise KeyError(
       "Unknown symbol '{}' at index {}".format(self._token,
-                                              self._scan.cursor)
+                                               self._scan.cursor)
     )
 
   def whitespace_token(self):
@@ -106,7 +106,8 @@ class Lexer:
     count = int(has_decimal)
     token = Token(TOKEN_TYPE["Number"])
 
-    while self._char and (self._char in NUMBER_CHARS or self._char == DECIMAL_CHAR):
+    while (self._char and
+            (self._char in NUMBER_CHARS or self._char == DECIMAL_CHAR)):
 
       count += int(self._char == DECIMAL_CHAR)
       if count > 1:

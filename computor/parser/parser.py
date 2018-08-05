@@ -6,13 +6,14 @@
 #    By: kcosta <kcosta@student.42.fr>             +#+  +:+       +#+         #
 #                                                +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/14 18:18:39 by kcosta           #+#    #+#              #
-#    Updated: 2018/06/17 23:15:32 by kcosta          ###   ########.fr        #
+#    Updated: 2018/08/05 13:35:13 by kcosta          ###   ########.fr        #
 #                                                                             #
 # *************************************************************************** #
 
 from computor.parser.lexer import Lexer
 from computor.parser.token import Token, TOKEN_TYPE
 from computor.math.unknown import Unknown
+
 
 class Parser:
   """Parser
@@ -46,7 +47,8 @@ class Parser:
 
     while self._token.type != TOKEN_TYPE['EOF']:
 
-      while (not rhs and self._token != '=') or (rhs and self._token.type != TOKEN_TYPE['EOF']):
+      while ((not rhs and self._token != '=') or
+             (rhs and self._token.type != TOKEN_TYPE['EOF'])):
 
         if self._token.type == TOKEN_TYPE['EOF']:
           self._lexer.raise_KeyError()
