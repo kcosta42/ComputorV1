@@ -12,8 +12,8 @@
 
 from computor.math.unknown import Unknown
 from computor.math.ft_sqrt import ft_sqrt
-# from matplotlib import pyplot
-# import numpy as np
+from matplotlib import pyplot
+import numpy as np
 
 
 class Polynomial:
@@ -24,19 +24,20 @@ class Polynomial:
     self.b = b
     self.c = c
 
-  def resolve(self):
+  def resolve(self, verbose, visual):
     resolve_method = POLYNOMIAL_DEGREE_FORMULA[self.a.degree]
-    resolve_method(self.a, self.b, self.c)
-    # self.show()
+    resolve_method(self.a, self.b, self.c, verbose)
+    if visual:
+      self.show()
 
-  # def show(self):
-  #   x = np.arange(-10.0, 10.0, 0.1)
-  #   s1 = self.a.coef * x ** 2 + self.b.coef * x + self.c.coef
-  #   pyplot.plot(x, s1)
-  #   pyplot.axhline(linewidth=2, color='r')
-  #   pyplot.title('Polynomial / Linear')
-  #   pyplot.grid(True)
-  #   pyplot.show()
+  def show(self):
+    x = np.arange(-10.0, 10.0, 0.1)
+    s1 = self.a.coef * x ** 2 + self.b.coef * x + self.c.coef
+    pyplot.plot(x, s1)
+    pyplot.axhline(linewidth=2, color='r')
+    pyplot.title('Polynomial / Linear')
+    pyplot.grid(True)
+    pyplot.show()
 
   @staticmethod
   def ReducEqu(lhs, rhs):
@@ -52,7 +53,7 @@ class Polynomial:
     return Polynomial(a, b, c)
 
   @staticmethod
-  def ResolveDefault(__reserved, _reserved, a):
+  def ResolveDefault(__reserved, _reserved, a, verbose):
     print("Polynomial degree: 0")
     if a == 0:
       print("All numbers are solution")
@@ -62,7 +63,7 @@ class Polynomial:
       return
 
   @staticmethod
-  def ResolveLinear(_reserved, a, b):
+  def ResolveLinear(_reserved, a, b, verbose):
     print("Polynomial degree: 1")
     if a == 0:
       if b == 0:
@@ -77,12 +78,17 @@ class Polynomial:
     print("The solution is: %.2f" % (b / a))
 
   @staticmethod
-  def ResolveQuadratic(a, b, c):
+  def ResolveQuadratic(a, b, c, verbose):
     if a == 0:
-      return Polynomial.ResolveLinear(a, b, c)
+      return Polynomial.ResolveLinear(a, b, c, verbose)
 
     print("Polynomial degree: 2")
+
     discriminant = float(b ** 2 - 4 * a * c)
+
+    if verbose:
+      print("Δ = {}".format(discriminant))
+
     if discriminant > 0:
       print("Discriminant is strictly positive, the two solutions are:")
       print("%.2f" % ((-b + ft_sqrt(discriminant)) / (2 * a)))

@@ -26,14 +26,14 @@ class Unknown:
     self.degree = degree
 
   def __str__(self):
-    s = "{}".format(self.coef) if self.coef != 0 else ""
+    s = "{}".format(self.coef)
 
     if self.degree == 1:
-      return "{}x".format(s)
+      return "{}x".format(s) if self.coef != 0 else ""
     if self.degree == 2:
-      return "{}x²".format(s)
+      return "{}x²".format(s) if self.coef != 0 else ""
 
-    return s if s != "" else "0"
+    return s
 
   def __float__(self):
     return self.coef
@@ -43,6 +43,9 @@ class Unknown:
 
   def __add__(self, other):
     return Unknown(float(self.coef + other), self.degree)
+
+  def __radd__(self, other):
+    return Unknown(float(other + self.coef), self.degree)
 
   def __sub__(self, other):
     return Unknown(float(self.coef - other), self.degree)

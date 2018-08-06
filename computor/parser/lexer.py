@@ -41,7 +41,8 @@ class Lexer:
   -----------
   KeyError if unknown symbol met in buffer
   """
-  def __init__(self, buffer):
+  def __init__(self, buffer, verbose):
+    self.verbose = verbose
     self._scan = Scanner(buffer)
     self._char = self._scan.read()
 
@@ -77,6 +78,9 @@ class Lexer:
 
     if no_whitespace and self._token.type == TOKEN_TYPE['Whitespace']:
       return self.lexer(no_whitespace)
+
+    if self.verbose:
+      print(self._token, end=" ")
     return self._token
 
   def raise_KeyError(self):

@@ -13,6 +13,9 @@
 from computor.parser.parser import Parser
 
 
-def resolve(buffer):
-  parser = Parser(buffer)
-  parser.parse()
+def resolve(buffer, verbose, visual):
+  parser = Parser(buffer, verbose, visual)
+  try:
+    parser.parse()
+  except e:
+    print(e)

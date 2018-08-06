@@ -39,6 +39,9 @@ class Token:
   def __eq__(self, other):
     return self._value == other
 
+  def __float__(self):
+    return float(self._value)
+
   def clone(self):
     """Return Token clone"""
     token = Token(self.type)
