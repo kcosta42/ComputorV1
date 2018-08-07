@@ -12,4 +12,4 @@ if __name__ == '__main__':
   parser.add_argument("-s", "--show", action="store_true",
                       help="Show the graph of the polynomial function")
   args = parser.parse_args()
-  core.resolve(args.equation, args.verbose, args.show)
+  core.resolve(args.equation.strip(), args.verbose, args.show)

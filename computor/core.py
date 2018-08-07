@@ -14,8 +14,10 @@ from computor.parser.parser import Parser
 
 
 def resolve(buffer, verbose, visual):
-  parser = Parser(buffer, verbose, visual)
   try:
+    parser = Parser(buffer, verbose, visual)
     parser.parse()
-  except e:
-    print(e)
+  except KeyError as e:
+    print("\n{error}".format(error=e))
+  except:
+    return

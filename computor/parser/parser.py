@@ -71,15 +71,21 @@ class Parser:
 
           elif self._token == '-':
             self._token = self._lexer.lexer(True)
-            if self._token.type != TOKEN_TYPE['Number']:
+            if self._token.type == TOKEN_TYPE['Number']:
+              self.parse_number(True if not rhs else False)
+            elif self._token.type == TOKEN_TYPE['Unknown']:
+              self.parse_unknown(-1 if not rhs else 1)
+            else:
               self._lexer.raise_KeyError()
-            self.parse_number(True if not rhs else False)
 
           elif self._token == '+':
             self._token = self._lexer.lexer(True)
-            if self._token.type != TOKEN_TYPE['Number']:
+            if self._token.type == TOKEN_TYPE['Number']:
+              self.parse_number(False if not rhs else True)
+            elif self._token.type == TOKEN_TYPE['Unknown']:
+              self.parse_unknown(1 if not rhs else -1)
+            else:
               self._lexer.raise_KeyError()
-            self.parse_number(False if not rhs else True)
 
         else:
           self._token = self._lexer.lexer(True)
@@ -87,6 +93,9 @@ class Parser:
       if not rhs:
         rhs = True
         self._token = self._lexer.lexer(True)
+
+    if not rhs:
+      self._lexer.raise_KeyError()
 
     self.print_reduced_form()
 

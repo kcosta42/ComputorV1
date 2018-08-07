@@ -45,6 +45,7 @@ class Lexer:
     self.verbose = verbose
     self._scan = Scanner(buffer)
     self._char = self._scan.read()
+    self._token = Token(TOKEN_TYPE['Whitespace'])
 
   def lexer(self, no_whitespace=False):
     """Lexer function

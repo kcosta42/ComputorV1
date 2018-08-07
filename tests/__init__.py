@@ -12,9 +12,8 @@
 
 import tests.test_core as core
 
+print("--------------------- POLYNOMIAL TEST ---------------------")
+core.test_polynomial()
 
 print("---------------------  PARSER   TEST  ---------------------")
 core.test_parser()
-
-print("--------------------- POLYNOMIAL TEST ---------------------")
-core.test_polynomial()
