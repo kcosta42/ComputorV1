@@ -75,7 +75,7 @@ class Polynomial:
     if b == 0:
       print("All numbers are solution")
       return
-    print("The solution is: %.2f" % (b / a))
+    print("The solution is:\n%.2f" % (b / a))
 
   @staticmethod
   def ResolveQuadratic(a, b, c, verbose):
