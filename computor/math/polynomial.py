@@ -40,19 +40,6 @@ class Polynomial:
     pyplot.show()
 
   @staticmethod
-  def ReducEqu(lhs, rhs):
-    return Polynomial.ReduceExp([])
-
-  @staticmethod
-  def ReduceExp(*args):
-    a = Unknown(0, 2)
-    b = Unknown(0, 1)
-    c = Unknown(0, 0)
-
-    print("Reduced form: ")
-    return Polynomial(a, b, c)
-
-  @staticmethod
   def ResolveDefault(__reserved, _reserved, a, verbose):
     print("Polynomial degree: 0")
     if a == 0:
@@ -75,7 +62,7 @@ class Polynomial:
     if b == 0:
       print("All numbers are solution")
       return
-    print("The solution is:\n%.2f" % (b / a))
+    print("The solution is:\n%.2f" % (-b / a))
 
   @staticmethod
   def ResolveQuadratic(a, b, c, verbose):
